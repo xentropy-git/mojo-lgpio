@@ -7,11 +7,10 @@ alias c_LGPIO_lgSpiClose = fn (Int32) -> Int32
 alias c_LGPIO_lgSpiRead = fn (Int32, String, Int32) -> Int32
 alias c_LGPIO_lgSpiWrite = fn (Int32, String, Int32) -> Int32
 
+@value
 struct Spi:
     var _handle: Int32
     var _channel: Int32
-
-
     var _close: c_LGPIO_lgSpiClose
     var _open: c_LGPIO_lgSpiOpen
     var _read: c_LGPIO_lgSpiRead
@@ -40,8 +39,3 @@ struct Spi:
         if ok < 0:
             raise Error("Failed to write to SPI channel")
 
-
-fn main() raises:
-    var spi = Spi(0, 0)
-    spi.write("Hello, world!")
-    spi.close()
